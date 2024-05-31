@@ -1,0 +1,56 @@
+# Application cache
+.cache
+*__pycache__
+.pytest_cache/
+
+# To be ignored files
+*__ignore
+*.coverage
+__pycache__
+
+# Dist
+dist
+
+# Log
+logs
+
+# virtual envirnoment
+venv/
+.venv/
+
+# environment file
+*.env
+*.env.*
+!.env.example
+.python-version
+connections.*.json
+
+# Vscode stuffs
+.vscode/
+.history/
+
+# jetbrains
+.idea/
+
+# Flask stuffs
+instance/
+.webassets-cache
+
+# Packages
+*.egg
+*.egg-info
+build/
+
+# databases
+*.sqlite3
+/db/*.sqlite3
+*.db
+
+# terraform
+.terraform*
+terraform.tfstate*
+*.tfvars
+.tfplan
+
+# env
+.env

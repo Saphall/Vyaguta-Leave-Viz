@@ -1,0 +1,65 @@
+{
+  "id": 2630,
+  "userId": 400,
+  "empId": "512",
+  "teamManagerId": 583,
+  "designationId": 8,
+  "designationName": "Solution Architect",
+  "firstName": "Cal",
+  "middleName": null,
+  "lastName": "Vokins",
+  "email": "manishakc+9@lftechnology.com",
+  "isHr": true,
+  "isSupervisor": false,
+  "allocations": [
+    {
+      "id": 67776,
+      "name": "ABCD",
+      "type": "project"
+    },
+    {
+      "id": 67786,
+      "name": "A ByteWave Edited 1",
+      "type": "project"
+    },
+    {
+      "id": 67901,
+      "name": "AI",
+      "type": "area"
+    },
+    {
+      "id": 67974,
+      "name": "A Projectt",
+      "type": "project"
+    },
+    {
+      "id": 68084,
+      "name": "bhagya_Testing_For_Vyaguta_Task6",
+      "type": "project"
+    }
+  ],
+  "leaveIssuerId": 472,
+  "currentLeaveIssuerId": 472,
+  "leaveIssuerFirstName": "Nihal",
+  "leaveIssuerLastName": "Maskey",
+  "currentLeaveIssuerEmail": "nihalmaskey@lftechnology.com",
+  "departmentDescription": "Engineering",
+  "startDate": "2024-04-25",
+  "endDate": "2024-04-25",
+  "leaveDays": 1,
+  "reason": "fgfgf",
+  "status": "REQUESTED",
+  "remarks": null,
+  "leaveTypeId": 7,
+  "leaveTypeName": "Discretionary",
+  "defaultDays": 10,
+  "transferableDays": 0,
+  "isConsecutive": 0,
+  "fiscalId": 102,
+  "fiscalStartDate": "2023-07-17T00:00:00.000Z",
+  "fiscalEndDate": "2024-07-15T00:00:00.000Z",
+  "fiscalIsCurrent": true,
+  "createdAt": "2024-03-26T07:57:41.000Z",
+  "updatedAt": "2024-03-26T07:57:41.000Z",
+  "isConverted": 0
+}
