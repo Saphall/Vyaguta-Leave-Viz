@@ -63,3 +63,15 @@ chmod +x test.sh
 
 ## Visualizations
 
+![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/acb3b542-c955-4dd9-8e26-f552e31a4bb6)
+
+![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/9ba03aa1-4c7d-44a2-aa34-12fe7a8500af)
+
+![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/c37d93ad-4d8e-43c6-85ae-8789747fdb68)
+
+![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/94fa46d0-92da-43bb-9520-3ca0a8e0f34d)
+
+
+
+
+
