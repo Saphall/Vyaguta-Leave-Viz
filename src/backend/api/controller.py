@@ -11,6 +11,7 @@ async def fetch_leaves(request: Request):
 
     bearer_token = auth_header.replace("Bearer ", "", 1)
     response = await get_leave_info(bearer_token)
+
     if isinstance(response, dict):
         return JSONResponse(content=response, status_code=response["status_code"])
     return (

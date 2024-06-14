@@ -30,6 +30,7 @@ leave_data AS (
     dbo.fiscal_year AS fy ON fy.fiscal_id = (SELECT fiscal_id FROM dbo.employee_leaves LIMIT 1)
   LEFT JOIN
     dbo.employee_leaves AS el ON e.employee_id = el.employee_id AND lt.leave_type_id = el.leave_type_id
+  WHERE el.status = 'APPROVED'
   GROUP BY
     e.employee_id,
     fiscal_date,

@@ -26,7 +26,7 @@ async def rate_limit_exception_handler(request: Request, exc: RateLimitExceeded)
 @app.on_event("startup")
 async def startup_event():
     scheduler.add_job(
-        load_leaves, IntervalTrigger(seconds=60), args=[os.getenv("BEARER_TOKEN")]
+        load_leaves, IntervalTrigger(seconds=12), args=[os.getenv("BEARER_TOKEN")]
     )
     scheduler.start()
 
