@@ -34,3 +34,32 @@ vyagutaviz
 |
 └── pyproject.toml             # Package Manager
 ```
+
+## [Backend](./src/backend/)
+
+```zsh
+uvicorn src.backend.main:app 
+```
+
+## [DB](./src/db/)
+
+```zsh
+docker compose up -d postgres
+python src/db/setupdb.py --up
+```
+
+## [Insights](./src/insights/)
+
+```zsh
+streamlit run src/insights/dashboard.py
+```
+
+## Test
+
+```zsh
+chmod +x test.sh
+./test.sh
+```
+
+## Visualizations
+
