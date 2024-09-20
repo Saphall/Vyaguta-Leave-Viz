@@ -22,10 +22,16 @@ Setup the necessary infrastructures.
  terraform init
 ```
 
+![image](https://github.com/user-attachments/assets/742b3605-3f17-4d8c-b9c6-f45573d8a4df)
+
+
 2. Apply the changes
 
 ```bash
  terraform apply
 ```
 
-> This will create the `vyaguta_db` database locally with `vyaguta_user` with admin role.
+![image](https://github.com/user-attachments/assets/cc23f2ff-95e5-4e85-bdad-1e8fe78dec36)
+
+
+> This creates the `vyaguta_db` database locally with `vyaguta_user` with admin role.
