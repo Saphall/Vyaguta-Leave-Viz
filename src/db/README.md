@@ -1,27 +1,29 @@
 # DB
 
-
-
 ## Prerequisites
 
 1. [Docker](https://docs.docker.com/)
 
 ## Setup
 
-* Setup PostgreSQL
+* **Setup PostgreSQL**
 
-```zsh
+```powershell
 docker compose up -d postgres
 ```
 
-* Synchronization
+* **Synchronization**: This will create the necessary tables and procedures for the project.
 
-```zsh
+```powershell
 python setupdb.py --up
 ```
 
-* Rollback
+![image](https://github.com/user-attachments/assets/e92cbb90-ea7c-4400-99bb-29d3a246428f)
 
-```zsh
+* **Rollback**: This will truncate all the tables and procedures created.
+
+```powershell
 python setupdb.py --down
 ```
+
+![image](https://github.com/user-attachments/assets/7a01998f-c730-4333-bbce-273930b8182e)
