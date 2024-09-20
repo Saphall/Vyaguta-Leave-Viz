@@ -1,3 +1,10 @@
-locals {
-  account_id = data.aws_caller_identity.current.account_id
+# Terraform required version and provider setup
+terraform {
+  required_providers {
+    postgresql = {
+      source  = "cyrilgdn/postgresql"
+      version = "~> 1.10.0"
+    }
+  }
+  required_version = ">= 1.0.0"
 }

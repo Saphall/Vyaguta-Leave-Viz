@@ -65,3 +65,7 @@ if __name__ == "__main__":
         migration_up()
     elif args.down:
         migration_down()
+    else:
+        print("Please provide a valid argument.")
+        parser.print_help()
+        exit(1)
