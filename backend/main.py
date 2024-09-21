@@ -9,14 +9,29 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from backend.api.main.routes import main_router
 from backend.api.leaves.routes import leave_router
+from backend.api.employees.routes import employee_router
+from backend.api.allocations.routes import allocations_router
+from backend.api.departments.routes import departments_router
+from backend.api.fiscal_year.routes import fiscal_year_router
+from backend.api.designations.routes import designations_router
+
 from backend.api.main.controller import insert_leaves
 from backend.error_handler.errors import rate_limit_handler
 
 
 load_dotenv()
 app = FastAPI()
-app.include_router(main_router)
-app.include_router(leave_router)
+routers = [
+    main_router,
+    employee_router,
+    allocations_router,
+    departments_router,
+    designations_router,
+    fiscal_year_router,
+    leave_router,
+]
+for router in routers:
+    app.include_router(router)
 scheduler = AsyncIOScheduler()
 
 

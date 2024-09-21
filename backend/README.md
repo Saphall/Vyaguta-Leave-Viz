@@ -52,8 +52,24 @@ uvicorn backend.main:app --reload
 
 ## API Endpoints
 
-* `[GET] /vyaguta/api/leaves` : Information about the leave data from Vyaguta API
+* `[GET] /vyaguta/api/leaves` : Fetch all the leave data from Vyaguta API
 
 * `[POST] /vyaguta/api/insert_leaves` : Insert leave data (JSON) obtained from Vyaguta into DB
 
-* `[GET] /api/leaves`: All leave information from Postgres DB
+* `[GET] /api/employees`: Fetch all the employee Informations from Postgres DB
+
+* `[GET] /api/allocations`: "Fetch all the employee allocations data from Postgres DB"
+
+* `[GET] /api/departments`: "Fetch all the departments data from Postgres DB"
+
+* `[GET] /api/designations`: "Fetch all the designations data from Postgres DB"
+
+* `[GET] /api/fiscal_year`: "Fetch all the fical_year data from Postgres DB"
+
+* `[GET] /api/leave_types`: "Fetch all the leave_types data from Postgres DB"
+
+* `[GET] /api/leave_issuer`: "Fetch all the leave_issuer data from Postgres DB"
+
+* `[GET] /api/employee_leaves`: "Fetch all the employee_leaves data from Postgres DB"
+
+* `[GET] /api/leaves`: Fetch all the leave information from Postgres DB

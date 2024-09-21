@@ -1,6 +1,4 @@
-def convert_list_to_dict(cursor):
-    columns = [desc[0] for desc in cursor.description]
-    return [dict(zip(columns, row)) for row in cursor.fetchall()]
+from backend.utils.util import convert_list_to_dict
 
 
 async def fetch_filtered_leave_type_info(conn, leave_type_id=None):
@@ -75,10 +73,16 @@ async def fetch_filtered_employee_leaves_info(
         if status:
             conditions.append("CAST(status AS VARCHAR) = %s")
             params.append(status)
-        if start_date:
-            conditions.append("CAST(sart_date AS DATE) <= %s")
+        if start_date and end_date:
+            conditions.append(
+                "CAST(start_date AS DATE) >= %s AND CAST(end_date AS DATE) <= %s"
+            )
             params.append(start_date)
-        if end_date:
+            params.append(end_date)
+        elif start_date:
+            conditions.append("CAST(start_date AS DATE) >= %s")
+            params.append(start_date)
+        elif end_date:
             conditions.append("CAST(end_date AS DATE) <= %s")
             params.append(end_date)
         if conditions:

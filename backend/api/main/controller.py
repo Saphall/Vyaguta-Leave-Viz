@@ -2,8 +2,9 @@ import os
 import json
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from db.utils.database import databaseConnect, databaseDisconnect
+
 from .services import get_leave_info, insert_leave_info
+from db.utils.database import databaseConnect, databaseDisconnect
 
 
 async def fetch_leaves(request: Request):
