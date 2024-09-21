@@ -1,0 +1,56 @@
+name: Python Lint
+
+on:
+  push:
+    branches: [main, stg, dev]
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main, stg, dev]
+    paths:
+      - "**.py"
+
+jobs:
+  python_lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+        env:
+          POETRY_VERSION: 1.4.2
+
+      - name: Install dependencies
+        env:
+          POETRY_VIRTUALENV_IN_PROJECT: 1
+        run: |
+          poetry env use 3.11.3
+          poetry install
+
+      - name: Run Black
+        run: |
+          source $(poetry env info --path)/bin/activate
+
+          echo -e "\033[32;1m[INFO] Black Formatting Check:"
+          black . --check
+
+      - name: Run Pylint
+        run: |
+          echo -e "\033[32;1m[INFO] Pylint Check:"
+          poetry run pylint --rcfile .pylintrc src tests --exit-zero --score=yes
+        id: pylint
+        shell: bash
+
+      - name: Evaluate Pylint score
+        if: steps.pylint.outputs.status == 0
+        run: |
+          echo "${{ steps.pylint.outputs.stdout }}" | awk '/rated at/ {print $NF}' | awk '{if ($1 >= 9.00) {exit 0} else {exit 1}}'
+          exit $?
+

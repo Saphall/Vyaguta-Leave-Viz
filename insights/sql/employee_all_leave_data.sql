@@ -30,11 +30,11 @@ SELECT
   el.updated_at,
   e.first_name || ' ' || e.last_name AS full_name,
   LEFT(CAST(fy.start_date AS VARCHAR), 4) || '/' || LEFT(CAST(fy.end_date AS VARCHAR), 4) AS fiscal_date,
-  TO_CHAR(created_at, 'YYYY') AS year,
-  TO_CHAR(created_at, 'Mon') AS hmonth,
-  TO_CHAR(created_at, 'MonDD') AS month,
-  TO_CHAR(created_at, 'DY') AS day,
-  TO_CHAR(created_at, 'MM') AS month_number
+  TO_CHAR(el.created_at, 'YYYY') AS leave_year,
+  TO_CHAR(el.created_at, 'Mon') AS leave_month,
+  TO_CHAR(el.created_at, 'MonDD') AS leave_month_dd,
+  TO_CHAR(el.created_at, 'DY') AS leave_day,
+  TO_CHAR(el.created_at, 'MM') AS month_number
 FROM dbo.employee_leaves AS el
 INNER JOIN dbo.employees AS e
   ON el.employee_id = e.employee_id
