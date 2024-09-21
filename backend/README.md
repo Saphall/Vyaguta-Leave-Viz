@@ -52,6 +52,8 @@ uvicorn backend.main:app --reload
 
 ## API Endpoints
 
-* `[GET] /vyaguta/api/leaves` : Information about the leave data from Vyaguta DB
+* `[GET] /vyaguta/api/leaves` : Information about the leave data from Vyaguta API
 
 * `[POST] /vyaguta/api/insert_leaves` : Insert leave data (JSON) obtained from Vyaguta into DB
+
+* `[GET] /api/leaves`: All leave information from Postgres DB

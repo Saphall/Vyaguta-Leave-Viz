@@ -4,27 +4,28 @@ from slowapi.util import get_remote_address
 from .controller import fetch_leaves, insert_leaves
 
 limiter = Limiter(key_func=get_remote_address)
-router = APIRouter()
+main_router = APIRouter()
 
 
-@router.get("/")
+@main_router.get("/")
 async def index():
     return {
         "success": True,
         "message": "Vyaguta Leave Visualization System Backend",
         "endpoints": {
-            "GET /api/vyaguta/leaves": "Fetch all leave information",
-            "POST /api/vyaguta/insert_leaves": "Insert the leave information",
+            "[GET] /vyaguta/api/leaves": "Fetch all leave data from Vyaguta API",
+            "[POST] /vyaguta/api/insert_leaves": "Insert leave data (JSON) obtained from Vyaguta into DB",
+            "[GET] /api/leaves": "Get all the leave data from Postgres DB",
         },
     }
 
 
-@router.get("/vyaguta/api/leaves")
+@main_router.get("/vyaguta/api/leaves")
 @limiter.limit("5/minute")
 async def vyaguta_leaves(request: Request):
     return await fetch_leaves(request)
 
 
-@router.post("/vyaguta/api/insert_leaves")
+@main_router.post("/vyaguta/api/insert_leaves")
 async def load_vyaguta_leaves(request: Request):
     return await insert_leaves(request)
