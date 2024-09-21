@@ -5,7 +5,7 @@ AS $$
   SELECT 
     DISTINCT 
     CAST(leaveTypeId AS INT), 
-    leaveTypeName,
+    leaveType,
     CAST(defaultDays AS INT), 
     CAST(transferableDays AS INT)  
   FROM raw.imported_leave_information ili

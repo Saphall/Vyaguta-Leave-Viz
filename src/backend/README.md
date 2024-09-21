@@ -47,5 +47,11 @@ poetry install
 ## Run locally
 
 ```zsh
-uvicorn src.backend.main:app 
+uvicorn src.backend.main:app --reload
 ```
+
+## API Endpoints
+
+* `/api/vyaguta/leaves` : [GET] Information about the leave data from Vyaguta DB
+
+* `/api/vyaguta/insert_leaves` : [POST] Insert leave data (JSON) obtained from Vyaguta into DB

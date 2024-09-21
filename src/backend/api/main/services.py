@@ -12,7 +12,7 @@ async def get_leave_info(bearer_token: str):
             response = await client.get(
                 VYAGUTA_URL.format(current_date=datetime.now().date()),
                 headers=headers,
-                timeout=10,
+                timeout=1000,
             )
             return response
 
@@ -26,17 +26,17 @@ async def insert_leave_info(data, conn):
     query = """
         INSERT INTO raw.imported_leave_information(
             id, userId, empId, teamManagerId, designationId, designationName, firstName, middleName, lastName, email, 
-            isHr, isSupervisor, allocations, leaveIssuerId, currentLeaveIssuerId, leaveIssuerFirstName, leaveIssuerLastName, 
-            currentLeaveIssuerEmail, departmentDescription, startDate, endDate, leaveDays, reason, status, remarks, leaveTypeId, 
-            leaveTypeName, defaultDays, transferableDays, isConsecutive, fiscalId, fiscalStartDate, fiscalEndDate, fiscalIsCurrent, 
-            createdAt, updatedAt, isConverted
+            isHr, isSupervisor, allocations, leaveIssuerId, currentLeaveIssuerId, issuerFirstName, issuerMiddleName, issuerLastName, 
+            currentLeaveIssuerEmail, departmentDescription, startDate, endDate, leaveDays, reason, leaveStatus, status, responseRemarks, leaveTypeId, 
+            leaveType, defaultDays, transferableDays, isConsecutive, fiscalId, fiscalStartDate, fiscalEndDate, fiscalIsCurrent, 
+            createdAt, updatedAt, isAutomated, isConverted, totalCount
         ) VALUES (
             %(id)s, %(userId)s, %(empId)s, %(teamManagerId)s, %(designationId)s, %(designationName)s, %(firstName)s, %(middleName)s, 
             %(lastName)s, %(email)s, %(isHr)s, %(isSupervisor)s, %(allocations)s, %(leaveIssuerId)s, %(currentLeaveIssuerId)s, 
-            %(leaveIssuerFirstName)s, %(leaveIssuerLastName)s, %(currentLeaveIssuerEmail)s, %(departmentDescription)s, %(startDate)s, 
-            %(endDate)s, %(leaveDays)s, %(reason)s, %(status)s, %(remarks)s, %(leaveTypeId)s, %(leaveTypeName)s, %(defaultDays)s, 
+            %(issuerFirstName)s, %(issuerMiddleName)s, %(issuerLastName)s, %(currentLeaveIssuerEmail)s, %(departmentDescription)s, %(startDate)s, 
+            %(endDate)s, %(leaveDays)s, %(reason)s, %(leaveStatus)s, %(status)s, %(responseRemarks)s, %(leaveTypeId)s, %(leaveType)s, %(defaultDays)s, 
             %(transferableDays)s, %(isConsecutive)s, %(fiscalId)s, %(fiscalStartDate)s, %(fiscalEndDate)s, %(fiscalIsCurrent)s, 
-            %(createdAt)s, %(updatedAt)s, %(isConverted)s
+            %(createdAt)s, %(updatedAt)s, %(isAutomated)s, %(isConverted)s, %(totalCount)s
         )
         """
     for row in data:

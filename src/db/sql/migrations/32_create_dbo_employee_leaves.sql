@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS dbo.employee_leaves (
   leave_days INT,
   reason TEXT,
   status VARCHAR(100),
-  remarks TEXT,
+  response_remarks TEXT,
   is_consecutive BOOLEAN,
   start_date DATE,
   end_date DATE,

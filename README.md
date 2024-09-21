@@ -38,7 +38,7 @@ vyagutaviz
 ## [Backend](./src/backend/)
 
 ```zsh
-uvicorn src.backend.main:app 
+uvicorn src.backend.main:app --reload
 ```
 
 ## [DB](./src/db/)
@@ -70,8 +70,3 @@ chmod +x test.sh
 ![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/c37d93ad-4d8e-43c6-85ae-8789747fdb68)
 
 ![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/94fa46d0-92da-43bb-9520-3ca0a8e0f34d)
-
-
-
-
-

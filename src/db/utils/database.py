@@ -11,7 +11,7 @@ USERNAME = os.getenv("POSTGRES_USER", "sa")
 PASSWORD = os.getenv("POSTGRES_PASSWORD")
 
 
-def databaseConnect():
+async def databaseConnect():
     """
     This function helps to connect to database.
 
@@ -31,7 +31,7 @@ def databaseConnect():
         raise (e)
 
 
-def databaseDisconnect(connection):
+async def databaseDisconnect(connection):
     """
     This function helps to disconnect from database.
     """

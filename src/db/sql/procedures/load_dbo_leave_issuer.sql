@@ -5,8 +5,8 @@ AS $$
   INSERT INTO dbo.leave_issuer 
   SELECT DISTINCT
     CAST(currentleaveissuerid AS INT), 
-    leaveissuerfirstname, 
-    leaveissuerlastname, 
+    issuerfirstname, 
+    issuerlastname, 
     currentleaveissueremail 
   FROM raw.imported_leave_information ili
   WHERE CAST(currentleaveissuerid AS INT) = CAST(leaveissuerid AS INT)
@@ -17,8 +17,8 @@ AS $$
   INSERT INTO dbo.leave_issuer 
   SELECT DISTINCT
     CAST(ili.leaveissuerid AS INT), 
-    ili.leaveissuerfirstname, 
-    ili.leaveissuerlastname, 
+    ili.issuerfirstname, 
+    ili.issuerlastname, 
     ili2.currentleaveissueremail 
   FROM raw.imported_leave_information ili
   LEFT JOIN raw.imported_leave_information ili2 

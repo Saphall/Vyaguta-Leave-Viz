@@ -7,8 +7,8 @@ from slowapi.errors import RateLimitExceeded
 from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from src.backend.api.routes import router
-from src.backend.api.controller import load_leaves
+from src.backend.api.main.routes import router
+from src.backend.api.main.controller import insert_leaves
 from src.backend.error_handler.errors import rate_limit_handler
 
 
@@ -26,19 +26,19 @@ async def rate_limit_exception_handler(request: Request, exc: RateLimitExceeded)
 @app.on_event("startup")
 async def startup_event():
     scheduler.add_job(
-        load_leaves, IntervalTrigger(seconds=12), args=[os.getenv("BEARER_TOKEN")]
+        insert_leaves,
+        IntervalTrigger(seconds=12),
+        args=[os.getenv("BEARER_TOKEN")],
+        max_instances=1,
+        replace_existing=True,
     )
     scheduler.start()
 
 
 @app.on_event("shutdown")
 async def shutdown_event():
+    scheduler.remove_all_jobs()
     scheduler.shutdown()
-
-
-@app.get("/")
-async def index():
-    return {"success": "Vyaguta Leave Info"}
 
 
 if __name__ == "__main__":

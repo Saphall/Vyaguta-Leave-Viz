@@ -15,7 +15,7 @@ AS $$
     CAST(leavedays AS INT),
     reason,
     status,
-    remarks,
+    responseremarks,
     CAST(isconsecutive AS BOOLEAN),
     CAST(startdate AS TIMESTAMP),
     CAST(enddate AS TIMESTAMP),

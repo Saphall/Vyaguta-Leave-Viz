@@ -1,4 +1,5 @@
 import os
+import asyncio
 import argparse
 import psycopg2
 
@@ -6,9 +7,9 @@ from src.db.sql import migrations, procedures
 from src.db.utils.database import databaseConnect, databaseDisconnect
 
 
-def migration_down():
+async def migration_down():
     schemas = ["raw", "dbo"]
-    conn = databaseConnect()
+    conn = await databaseConnect()
     cur = conn.cursor()
     for schema in schemas:
         cur.execute(
@@ -20,11 +21,11 @@ def migration_down():
     print("[-] VyagutaViz Database cleaned!")
     print("=" * 36)
     conn.commit()
-    databaseDisconnect(conn)
+    await databaseDisconnect(conn)
 
 
-def migration_up():
-    conn = databaseConnect()
+async def migration_up():
+    conn = await databaseConnect()
     cur = conn.cursor()
     directories = [migrations.__path__[0], procedures.__path__[0]]
     for directory in directories:
@@ -44,7 +45,7 @@ def migration_up():
                     except psycopg2.Error as e:
                         conn.rollback()
                         print(f"[-] Failed to execute {filename}: ", e)
-    databaseDisconnect(conn)
+    await databaseDisconnect(conn)
 
 
 if __name__ == "__main__":
@@ -62,9 +63,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.up:
-        migration_up()
+        asyncio.run(migration_up())
     elif args.down:
-        migration_down()
+        asyncio.run(migration_down())
     else:
         print("Please provide a valid argument.")
         parser.print_help()
