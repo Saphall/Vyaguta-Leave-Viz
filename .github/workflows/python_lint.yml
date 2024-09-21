@@ -10,7 +10,7 @@ on:
       - "**.py"
 
 jobs:
-  data-loader-format:
+  python_lint:
     runs-on: ubuntu-latest
 
     steps:

@@ -44,7 +44,7 @@ def create_card(employee):
 
 async def main(conn):
     st.title("Employee Visualization")
-    df_grouped =  emp_visualization(conn)
+    df_grouped = emp_visualization(conn)
 
     # Fetch additional data
     data = await fetch_data(f"{sql.__path__[0]}/employee_details.sql")
