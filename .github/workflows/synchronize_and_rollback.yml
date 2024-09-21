@@ -1,4 +1,4 @@
-name: Database Migration
+name: Database Migration and Rollback
 
 on:
   workflow_dispatch:
@@ -23,11 +23,6 @@ on:
 jobs:
   synchronize:
     runs-on: self-hosted
-
-    env:
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
     steps:
       - name: Checkout code
