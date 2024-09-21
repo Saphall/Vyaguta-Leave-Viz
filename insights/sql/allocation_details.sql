@@ -1,7 +1,7 @@
 SELECT DISTINCT
   e.employee_id,
   a.allocation_id,
-  a."name",
+  a.name,
   a.type
 FROM dbo.employees AS e
 INNER JOIN dbo.employee_allocations AS ea

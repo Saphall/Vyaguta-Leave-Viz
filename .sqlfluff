@@ -23,7 +23,7 @@ processes = 0
 # See https://docs.sqlfluff.com/en/stable/configuration.html#enabling-and-disabling-rules
 # CV11 (convention.casting_style) and ST06 (structure.column_order) are
 # two of the more controversial rules included to illustrate usage.
-exclude_rules = CV11, ST06, ST01, LT08, AL09, CP02
+exclude_rules = CV11, ST06, ST01, LT08, AL09, CP02, RF02
 
 
 [sqlfluff:indentation]
