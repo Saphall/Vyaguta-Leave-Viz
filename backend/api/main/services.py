@@ -2,7 +2,9 @@ from datetime import datetime
 import db
 import json
 import httpx
+
 from backend.utils.constants import VYAGUTA_URL
+from backend.utils.sql import LEAVE_DATA_INSERT_QUERY
 
 
 async def get_leave_info(bearer_token: str):
@@ -23,23 +25,11 @@ async def get_leave_info(bearer_token: str):
 async def insert_leave_info(data, conn):
     try:
         cur = conn.cursor()
-        cur.execute("TRUNCATE TABLE raw.imported_leave_information")
-        query = """
-            INSERT INTO raw.imported_leave_information(
-                id, userId, empId, teamManagerId, designationId, designationName, firstName, middleName, lastName, email, 
-                isHr, isSupervisor, allocations, leaveIssuerId, currentLeaveIssuerId, issuerFirstName, issuerMiddleName, issuerLastName, 
-                currentLeaveIssuerEmail, departmentDescription, startDate, endDate, leaveDays, reason, leaveStatus, status, responseRemarks, leaveTypeId, 
-                leaveType, defaultDays, transferableDays, isConsecutive, fiscalId, fiscalStartDate, fiscalEndDate, fiscalIsCurrent, 
-                createdAt, updatedAt, isAutomated, isConverted, totalCount
-            ) VALUES (
-                %(id)s, %(userId)s, %(empId)s, %(teamManagerId)s, %(designationId)s, %(designationName)s, %(firstName)s, %(middleName)s, 
-                %(lastName)s, %(email)s, %(isHr)s, %(isSupervisor)s, %(allocations)s, %(leaveIssuerId)s, %(currentLeaveIssuerId)s, 
-                %(issuerFirstName)s, %(issuerMiddleName)s, %(issuerLastName)s, %(currentLeaveIssuerEmail)s, %(departmentDescription)s, %(startDate)s, 
-                %(endDate)s, %(leaveDays)s, %(reason)s, %(leaveStatus)s, %(status)s, %(responseRemarks)s, %(leaveTypeId)s, %(leaveType)s, %(defaultDays)s, 
-                %(transferableDays)s, %(isConsecutive)s, %(fiscalId)s, %(fiscalStartDate)s, %(fiscalEndDate)s, %(fiscalIsCurrent)s, 
-                %(createdAt)s, %(updatedAt)s, %(isAutomated)s, %(isConverted)s, %(totalCount)s
-            )
-            """
+        raw_leave_table = "raw.imported_leave_information"
+
+        cur.execute(f"TRUNCATE TABLE {raw_leave_table}")
+        query = LEAVE_DATA_INSERT_QUERY.format(raw_table_name=raw_leave_table)
+
         for row in data:
             if row["allocations"] is not None:
                 row["allocations"] = json.dumps(row["allocations"])
