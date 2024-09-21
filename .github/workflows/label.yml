@@ -1,0 +1,19 @@
+# This workflow will apply a label based on the
+# paths that are modified in the pull request.
+#
+# This workflow uses .github/labeler.yml file as configuration.
+
+name: Labeler
+on: [pull_request]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

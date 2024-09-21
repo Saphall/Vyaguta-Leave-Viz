@@ -12,13 +12,13 @@ on:
           - "Rollback"
         default: "Synchronize"
 
-    dry_run:
-      type: choice
-      description: Dry Run
-      options:
-        - "true"
-        - "false"
-      default: "true"
+      dry_run:
+        type: choice
+        description: Dry Run
+        options:
+          - "true"
+          - "false"
+        default: "true"
 
 jobs:
   synchronize:
@@ -51,7 +51,7 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          python src/db/db_migrate.py --up
+          python db/db_migrate.py --up
 
       - name: DB Rollback
         if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'synchronize'
@@ -60,4 +60,4 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          python src/db/db_migrate.py --down
+          python db/db_migrate.py --down
