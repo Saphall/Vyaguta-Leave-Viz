@@ -2,7 +2,7 @@ from unittest.mock import patch, MagicMock
 import pytest
 
 from psycopg2 import Error as Psycopg2Error
-from src.db.utils import database as db
+from db.utils import database as db
 
 
 @patch("psycopg2.connect")

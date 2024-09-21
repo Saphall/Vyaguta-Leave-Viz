@@ -27,7 +27,7 @@ coverage report -m $(echo $changed_files)
 # pylint check
 echo
 echo -e "${info}[INFO] pylint check:${end}"
-lint_score=$(pylint --rcfile .pylintrc src/ tests/)
+lint_score=$(pylint --rcfile .pylintrc backend/ db/ insights/)
 echo "$lint_score"
 
 # check if pylint score is < 9.0

@@ -1,5 +1,5 @@
 import pandas as pd
-from src.db.utils.database import databaseConnect, databaseDisconnect
+from db.utils.database import databaseConnect, databaseDisconnect
 
 
 async def fetch_data(sql_file):

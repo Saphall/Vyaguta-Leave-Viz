@@ -3,8 +3,8 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
-from src.insights import sql
-from src.insights.utils.sql import fetch_data
+from insights import sql
+from insights.utils.sql import fetch_data
 
 
 def emp_visualization(conn):

@@ -3,55 +3,91 @@
 Visualize the Vyaguta Leave Information for Leapfrog employees over time.
 
 ```.
-vyagutaviz
+Vyaguta Leave Viz
 |
 ├── .github/                   # CI/CD scripts
+│   └── workflow/
 |
-├── src/
-│   ├── backend/               # Contains code for Backend (API)
-│   │   
-│   ├── db/                    # Contains code for Database
-│   │   ├── setupdb.py            
-│   │   └── sql/
-│   │       ├── migrations/
-│   │       └── procedures/
-|   |
-│   ├── insights/              # Contains code for Visualization
-│   │   └── #
-|   |
-│   └── utils/                 # Utilities files
-│       └── db.py
+├── backend/                   # Contains code for Backend (API)
+│   ├── api/                   # Different API routes and their services
+│   ├── error_handler/
+│   ├── utils/
+│   ├── tests/
+│   ├── main.py
+│   ├── README.md
+│   ├── Dockerfile
+│   └── vyaguta_info_example.json
 |
-├── tests/                     # Test Scripts
+├── db/                        # Contains code for Database
+│   ├── sql/
+│   └── utils/
+│   ├── setupdb.py
+│   ├── README.md
+│   ├── procedures.json
+|
+├── infra/                     # Contains code for Infrastructure setup
+│   ├── main.tf
+│   ├── providers.tf
+│   ├── settings.tf
+│   └── variables.tf
+│   ├── terraform.tfvars
+│   ├── README.md
+|
+├── insights/                  # Contains code for Visualization
+│   └── utils/
+│   ├── dashboard.py
+│   ├── Dockerfile
+│   ├── README.md
+|
+├── .env.example               # Example environment variables
+|
+├── .gitignore                 # Git ignore file
 |
 ├── .pylintrc                  # Lint Check for Python files
 |
-├── .sqlfluff                  # Linter for SQL files
+├── .python-version            # Python version file
 |
-├── test.sh                    # Bash Script to test the code
+├── .sqlfluff                  # Linter for SQL files
 |
 ├── docker-compose.yml         # Docker Compose file
 |
-└── pyproject.toml             # Package Manager
+├── LICENSE.md                 # License file
+|
+├── poetry.lock                # Poetry lock file
+|
+├── pyproject.toml             # Package Manager
+|
+├── README.md                  # Project README
+|
+├── SETUP.md                   # Setup instructions
+|
+└── test.sh                    # Bash Script to test the code
 ```
 
-## [Backend](./src/backend/)
+## [Infra](./infra/)
+
+```bash
+terraform init
+terraform apply
+```
+
+## [Backend](./backend/)
 
 ```zsh
-uvicorn src.backend.main:app --reload
+uvicorn backend.main:app --reload
 ```
 
-## [DB](./src/db/)
+## [DB](./db/)
 
 ```zsh
 docker compose up -d postgres
-python src/db/setupdb.py --up
+python db/setupdb.py --up
 ```
 
-## [Insights](./src/insights/)
+## [Insights](./insights/)
 
 ```zsh
-streamlit run src/insights/dashboard.py
+streamlit run insights/dashboard.py
 ```
 
 ## Test

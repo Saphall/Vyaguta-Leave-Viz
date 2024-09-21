@@ -3,7 +3,7 @@ volumes:
   postgres-data:
 
 services:
-  postgres:
+  db:
     container_name: postgresql
     image: "postgres:12.2-alpine"
     env_file:

@@ -1,6 +1,6 @@
-# Backend
+# Insights
 
-![FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png)
+![Streamlit](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_90yUni3jBuNFSiaJkwNs8SDbHX2t_3uAg&s)
 
 ## Prerequisites
 
@@ -47,11 +47,5 @@ poetry install
 ## Run locally
 
 ```zsh
-uvicorn src.backend.main:app --reload
+streamlit run insights/dashboard.py
 ```
-
-## API Endpoints
-
-* `/api/vyaguta/leaves` : [GET] Information about the leave data from Vyaguta DB
-
-* `/api/vyaguta/insert_leaves` : [POST] Insert leave data (JSON) obtained from Vyaguta into DB

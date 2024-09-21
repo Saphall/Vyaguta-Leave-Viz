@@ -7,9 +7,9 @@ from slowapi.errors import RateLimitExceeded
 from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from src.backend.api.main.routes import router
-from src.backend.api.main.controller import insert_leaves
-from src.backend.error_handler.errors import rate_limit_handler
+from backend.api.main.routes import router
+from backend.api.main.controller import insert_leaves
+from backend.error_handler.errors import rate_limit_handler
 
 
 load_dotenv()
@@ -27,7 +27,7 @@ async def rate_limit_exception_handler(request: Request, exc: RateLimitExceeded)
 async def startup_event():
     scheduler.add_job(
         insert_leaves,
-        IntervalTrigger(seconds=12),
+        IntervalTrigger(seconds=300),
         args=[os.getenv("BEARER_TOKEN")],
         max_instances=1,
         replace_existing=True,

@@ -5,7 +5,6 @@ description = "Vyaguta Leave Visualization system."
 authors = ["Saphall <saphalshakha@lftechnology.com>"]
 
 readme = ["README.md", "LICENSE.md"]
-packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "3.11.*"
@@ -28,8 +27,14 @@ coverage = "^7.5.3"
 pylint = "^3.2.2"
 sqlfluff = "^3.0.7"
 
-# [tool.poetry.scripts]
-# backend-start = 'vyagutaviz.backend.__main__:main'
+[[tool.poetry.packages]]
+include = "backend"
+
+[[tool.poetry.packages]]
+include = "db"
+
+[[tool.poetry.packages]]
+include = "insights"
 
 [build-system]
 requires = ["poetry-core>=1.1.0"]
