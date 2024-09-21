@@ -75,3 +75,36 @@ uvicorn backend.main:app --reload
 * `[GET] /api/employee_leaves`: "Fetch all the employee_leaves data from Postgres DB"
 
 * `[GET] /api/leaves`: Fetch all the leave information from Postgres DB
+
+## Example API Call
+
+Curl:
+
+```bash
+curl -X 'GET' \
+  'http://127.0.0.1:8000/api/designations?designation_id=4' \
+  -H 'accept: application/json'
+```
+
+Request URL: 
+
+```bash
+http://127.0.0.1:8000/api/designations?designation_id=4
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "designation_id": 4,
+      "designation_name": "Senior Software Engineer"
+    },
+    {
+      "total_count": 1
+    }
+  ],
+  "status_code": 200
+}
+```
