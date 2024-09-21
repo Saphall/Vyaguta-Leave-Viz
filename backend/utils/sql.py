@@ -2,7 +2,7 @@
 
 LEAVE_DATA_INSERT_QUERY = """
     INSERT INTO {raw_table_name} (
-      id, userId, empId, teamManagerId, designationId, designationName, firstName, middleName, lastName, email, sHr, isSupervisor, 
+      id, userId, empId, teamManagerId, designationId, designationName, firstName, middleName, lastName, email, isHr, isSupervisor, 
       allocations, leaveIssuerId, currentLeaveIssuerId, issuerFirstName, issuerMiddleName, issuerLastName, currentLeaveIssuerEmail, 
       departmentDescription, startDate, endDate, leaveDays, reason, leaveStatus, status, responseRemarks, leaveTypeId, leaveType, 
       defaultDays, transferableDays, isConsecutive, fiscalId, fiscalStartDate, fiscalEndDate, fiscalIsCurrent, createdAt, updatedAt, 

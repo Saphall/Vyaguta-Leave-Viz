@@ -8,7 +8,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from backend.api.main.routes import main_router
-from backend.api.insights.routes import insights_router
+from backend.api.leaves.routes import leave_router
 from backend.api.main.controller import insert_leaves
 from backend.error_handler.errors import rate_limit_handler
 
@@ -16,7 +16,7 @@ from backend.error_handler.errors import rate_limit_handler
 load_dotenv()
 app = FastAPI()
 app.include_router(main_router)
-app.include_router(insights_router)
+app.include_router(leave_router)
 scheduler = AsyncIOScheduler()
 
 
