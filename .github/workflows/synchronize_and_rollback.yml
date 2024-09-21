@@ -22,7 +22,7 @@ on:
 
 jobs:
   synchronize:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -33,26 +33,43 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+        env:
+          POETRY_VERSION: 1.4.2
+
       - name: Install dependencies
+        env:
+          POETRY_VIRTUALENV_IN_PROJECT: 1
         run: |
-          sudo apt-get install -y libpq-dev
-          python -m pip install --upgrade pip
-          pip install psycopg2 argparse
+          poetry env use 3.11.3
+          poetry install
+          pip install -e .
+
+      - name: Verify user
+        id: verify_user
+        run: |
+          if [ "${{ github.actor }}" != "Saphall" ]; then
+            echo "User is not authorized to run DB synchronization or rollback."
+            echo "run_db_steps=false" >> $GITHUB_ENV
+          else
+            echo "run_db_steps=true" >> $GITHUB_ENV
+          fi
 
       - name: DB Synchronization
-        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'rollback'
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'rollback' && env.run_db_steps == 'true'
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          python db/db_migrate.py --up
+          python db/setupdb.py --up
 
       - name: DB Rollback
-        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'synchronize'
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'synchronize' && env.run_db_steps == 'true'
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          python db/db_migrate.py --down
+          python db/setupdb.py --down
