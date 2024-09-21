@@ -22,7 +22,7 @@ on:
 
 jobs:
   synchronize:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -39,8 +39,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install psycopg2 argparse
 
+      - name: Verify user
+        id: verify_user
+        run: |
+          if [ "${{ github.actor }}" != "saphall" ]; then
+            echo "User is not authorized to run DB synchronization or rollback."
+            echo "run_db_steps=false" >> $GITHUB_ENV
+          else
+            echo "run_db_steps=true" >> $GITHUB_ENV
+          fi
+
       - name: DB Synchronization
-        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'rollback'
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'rollback' && env.run_db_steps == 'true'
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
@@ -49,7 +59,7 @@ jobs:
           python db/db_migrate.py --up
 
       - name: DB Rollback
-        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'synchronize'
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == 'false' && inputs.action != 'synchronize' && env.run_db_steps == 'true'
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
