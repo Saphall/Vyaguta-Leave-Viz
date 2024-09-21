@@ -22,7 +22,7 @@ SELECT
   el.leave_id,
   el.status,
   el.reason,
-  el.remarks,
+  el.response_remarks,
   el.is_consecutive,
   el.start_date,
   el.end_date,

@@ -8,11 +8,11 @@ from src.insights.utils.sql import fetch_data
 
 
 def emp_visualization(conn):
-    query = "SELECT empid, firstname, leavetypename, leavedays FROM raw.imported_leave_information;"
+    query = "SELECT empid, firstname, leavetype, leavedays FROM raw.imported_leave_information;"
     df = pd.read_sql_query(query, conn)
     df["leavedays"] = pd.to_numeric(df["leavedays"], errors="coerce")
     df_grouped = (
-        df.groupby(["firstname", "leavetypename"])["leavedays"]
+        df.groupby(["firstname", "leavetype"])["leavedays"]
         .sum()
         .unstack()
         .reset_index()
@@ -42,14 +42,14 @@ def create_card(employee):
     return card_html
 
 
-def main(conn):
+async def main(conn):
     st.title("Employee Visualization")
-    df_grouped = emp_visualization(conn)
+    df_grouped =  emp_visualization(conn)
 
     # Fetch additional data
-    data = fetch_data(f"{sql.__path__[0]}/employee_details.sql")
-    alloc_data = fetch_data(f"{sql.__path__[0]}/allocation_details.sql")
-    leave_bal = fetch_data(f"{sql.__path__[0]}/leave_balance.sql")
+    data = await fetch_data(f"{sql.__path__[0]}/employee_details.sql")
+    alloc_data = await fetch_data(f"{sql.__path__[0]}/allocation_details.sql")
+    leave_bal = await fetch_data(f"{sql.__path__[0]}/leave_balance.sql")
 
     result_dict = dict(zip(data["full_name"], data["employee_id"]))
 
@@ -84,10 +84,10 @@ def main(conn):
         df_grouped["firstname"] == str(selected_display_value).split(" ")[0]
     ]
     df_filtered = df_filtered.drop(columns="firstname").T.reset_index()
-    df_filtered.columns = ["leavetypename", "leavedays"]
+    df_filtered.columns = ["leavetype", "leavedays"]
 
     # Create bar chart for leave details
-    fig = px.bar(df_filtered, x="leavetypename", y="leavedays", text="leavedays")
+    fig = px.bar(df_filtered, x="leavetype", y="leavedays", text="leavedays")
 
     # Row 4: Leave Details with Two Columns
     with st.container():

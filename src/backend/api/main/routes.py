@@ -11,6 +11,7 @@ router = APIRouter()
 async def index():
     return {"success": "Vyaguta Leave Info Backend"}
 
+
 @router.get("/api/vyaguta/leaves")
 @limiter.limit("5/minute")
 async def vyaguta_leaves(request: Request):

@@ -1,4 +1,5 @@
 import time
+import asyncio
 import warnings
 import streamlit as st
 
@@ -17,18 +18,18 @@ st.sidebar.title("📊 Navigation")
 page = st.sidebar.radio("Go to", ["Home", "Emp Visualization", "Leave Information"])
 
 
-def main():
-    conn = databaseConnect()
+async def main():
+    conn = await databaseConnect()
     if page == "Home":
         home.main(conn)
 
     elif page == "Emp Visualization":
-        employee.main(conn)
+        await employee.main(conn)
 
     elif page == "Leave Information":
-        leave_information.main(conn)
+        await leave_information.main(conn)
 
-    databaseDisconnect(conn)
+    await databaseDisconnect(conn)
 
 
 def rerun():
@@ -38,5 +39,5 @@ def rerun():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
     rerun()

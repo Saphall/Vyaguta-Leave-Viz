@@ -5,9 +5,9 @@ from src.insights import sql
 from src.insights.utils.sql import fetch_data
 
 
-def main(conn):
+async def main(conn):
     st.title("Leave Trends")
-    all_data = fetch_data(f"{sql.__path__[0]}/employee_all_leave_data.sql")
+    all_data = await fetch_data(f"{sql.__path__[0]}/employee_all_leave_data.sql")
 
     # Create a column for the selectbox
     col1, col2 = st.columns([1, 3])
