@@ -3,8 +3,8 @@ import asyncio
 import warnings
 import streamlit as st
 
-from src.insights.page import home, leave_information, employee
-from src.db.utils.database import databaseConnect, databaseDisconnect
+from insights.page import home, leave_information, employee
+from db.utils.database import databaseConnect, databaseDisconnect
 
 
 st.set_page_config(

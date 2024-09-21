@@ -1,8 +1,8 @@
 import streamlit as st
 import plotly.express as px
 
-from src.insights import sql
-from src.insights.utils.sql import fetch_data
+from insights import sql
+from insights.utils.sql import fetch_data
 
 
 async def main(conn):

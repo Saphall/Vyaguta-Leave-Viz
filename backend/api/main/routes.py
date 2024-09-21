@@ -9,15 +9,22 @@ router = APIRouter()
 
 @router.get("/")
 async def index():
-    return {"success": "Vyaguta Leave Info Backend"}
+    return {
+        "success": True,
+        "message": "Vyaguta Leave Visualization System Backend",
+        "endpoints": {
+            "GET /api/vyaguta/leaves": "Fetch all leave information",
+            "POST /api/vyaguta/insert_leaves": "Insert the leave information",
+        },
+    }
 
 
-@router.get("/api/vyaguta/leaves")
+@router.get("/vyaguta/api/leaves")
 @limiter.limit("5/minute")
 async def vyaguta_leaves(request: Request):
     return await fetch_leaves(request)
 
 
-@router.post("/api/vyaguta/insert_leaves")
+@router.post("/vyaguta/api/insert_leaves")
 async def load_vyaguta_leaves(request: Request):
     return await insert_leaves(request)

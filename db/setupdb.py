@@ -1,10 +1,11 @@
 import os
+import sys
 import asyncio
 import argparse
 import psycopg2
 
-from src.db.sql import migrations, procedures
-from src.db.utils.database import databaseConnect, databaseDisconnect
+from db.sql import migrations, procedures
+from db.utils.database import databaseConnect, databaseDisconnect
 
 
 async def migration_down():
@@ -69,4 +70,4 @@ if __name__ == "__main__":
     else:
         print("Please provide a valid argument.")
         parser.print_help()
-        exit(1)
+        sys.exit(1)

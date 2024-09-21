@@ -2,7 +2,7 @@ import os
 import json
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from src.db.utils.database import databaseConnect, databaseDisconnect
+from db.utils.database import databaseConnect, databaseDisconnect
 from .services import get_leave_info, insert_leave_info
 
 
@@ -49,11 +49,12 @@ async def insert_leaves(bearer_token: str):
 
                 # Proceed with database connection and insertion
                 conn = await databaseConnect()
-                await insert_leave_info(data, conn)
+                insert_data = await insert_leave_info(data, conn)
                 await databaseDisconnect(conn)
 
-                print("[INFO]: Leave Data Inserted Successfully!")
-                return {"success": "Leave Data Inserted Successfully!"}, 200
+                return insert_data.get("success") or insert_data.get(
+                    "error"
+                ), insert_data.get("status_code", 500)
             else:
                 return {"error": "No data received from Vyaguta!"}, 400
         else:

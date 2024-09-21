@@ -3,8 +3,8 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
-from src.insights import sql
-from src.insights.utils.sql import fetch_data
+from insights import sql
+from insights.utils.sql import fetch_data
 
 
 def emp_visualization(conn):
@@ -44,7 +44,7 @@ def create_card(employee):
 
 async def main(conn):
     st.title("Employee Visualization")
-    df_grouped =  emp_visualization(conn)
+    df_grouped = emp_visualization(conn)
 
     # Fetch additional data
     data = await fetch_data(f"{sql.__path__[0]}/employee_details.sql")
