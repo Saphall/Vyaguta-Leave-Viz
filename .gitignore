@@ -6,7 +6,6 @@
 # To be ignored files
 *__ignore
 *.coverage
-__pycache__
 
 # Dist
 dist
@@ -14,7 +13,7 @@ dist
 # Log
 logs
 
-# virtual envirnoment
+# virtual environment
 venv/
 .venv/
 
@@ -40,6 +39,20 @@ instance/
 *.egg
 *.egg-info
 build/
+
+# Node Packages
+node_modules/
+.node_modules/
+built/*
+build.json
+*.config
+.settings
+yarn.lock
+yarn-error.log
+package-lock.json
+.eslintcache
+*v8.log
+/lib/
 
 # databases
 *.sqlite3

@@ -1,0 +1,20 @@
+basePath: sql
+connectionResolver: connection-resolver.js
+
+sql:
+  # procedures
+  - procedures/load_dbo_allocations.sql
+  - procedures/load_dbo_departments.sql
+  - procedures/load_dbo_designations.sql
+  - procedures/load_dbo_employee_allocations.sql
+  - procedures/load_dbo_employee_leave_issuer.sql
+  - procedures/load_dbo_employee_leaves.sql
+  - procedures/load_dbo_employees.sql
+  - procedures/load_dbo_fiscal_year.sql
+  - procedures/load_dbo_leave_issuer.sql
+  - procedures/load_dbo_leave_types.sql
+  - procedures/load_dbo_team_managers.sql
+
+migration:
+  directory: migrations
+  tableName: __vyaguta_migrations

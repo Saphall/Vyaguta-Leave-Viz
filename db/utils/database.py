@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SERVER = os.getenv("SERVER", "localhost")
-DATABASE = os.getenv("DATABASE")
-USERNAME = os.getenv("POSTGRES_USER", "sa")
-PASSWORD = os.getenv("POSTGRES_PASSWORD")
+SERVER = os.getenv("DB_HOST", "localhost")
+DATABASE = os.getenv("DB_NAME", "postgres")
+USERNAME = os.getenv("DB_USERNAME", "sa")
+PASSWORD = os.getenv("DB_PASSWORD")
 
 
 async def databaseConnect():
