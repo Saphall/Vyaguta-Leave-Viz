@@ -1,19 +1,26 @@
-basePath: sql
+basePath: src
 connectionResolver: connection-resolver.js
 
 sql:
-  # procedures
-  - procedures/load_dbo_allocations.sql
-  - procedures/load_dbo_departments.sql
-  - procedures/load_dbo_designations.sql
-  - procedures/load_dbo_employee_allocations.sql
-  - procedures/load_dbo_employee_leave_issuer.sql
-  - procedures/load_dbo_employee_leaves.sql
-  - procedures/load_dbo_employees.sql
-  - procedures/load_dbo_fiscal_year.sql
-  - procedures/load_dbo_leave_issuer.sql
-  - procedures/load_dbo_leave_types.sql
-  - procedures/load_dbo_team_managers.sql
+  # Procedures
+  # extract
+  - procedure/extract/archive_raw_leave_info.sql
+
+  # transform
+  - procedure/transform/load_interim_leave_info.sql
+
+  # load
+  - procedure/load/load_dim_allocations.sql
+  - procedure/load/load_dim_departments.sql
+  - procedure/load/load_dim_designations.sql
+  - procedure/load/load_dim_employee_allocations.sql
+  - procedure/load/load_dim_employee_leave_issuer.sql
+  - procedure/load/load_fact_employee_leaves.sql
+  - procedure/load/load_dim_employees.sql
+  - procedure/load/load_dim_fiscal_year.sql
+  - procedure/load/load_dim_leave_issuer.sql
+  - procedure/load/load_dim_leave_types.sql
+  - procedure/load/load_dim_team_managers.sql
 
 migration:
   directory: migrations
