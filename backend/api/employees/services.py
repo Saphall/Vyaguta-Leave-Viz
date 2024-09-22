@@ -10,7 +10,7 @@ async def fetch_filtered_employee_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.employees"
+        query = "SELECT * FROM dbo.dim_employees"
         params = []
         conditions = []
 

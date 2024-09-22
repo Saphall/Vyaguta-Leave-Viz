@@ -7,7 +7,7 @@ async def fetch_filtered_allocations_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.allocations"
+        query = "SELECT * FROM dbo.dim_allocations"
         params = []
         conditions = []
 

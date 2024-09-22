@@ -7,7 +7,7 @@ async def fetch_filtered_departments_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.departments"
+        query = "SELECT * FROM dbo.dim_departments"
         params = []
         conditions = []
 

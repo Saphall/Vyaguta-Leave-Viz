@@ -4,7 +4,7 @@ from backend.utils.util import convert_list_to_dict
 async def fetch_filtered_leave_type_info(conn, leave_type_id=None):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.leave_types"
+        query = "SELECT * FROM dbo.dim_leave_types"
         params = []
         conditions = []
 
@@ -28,7 +28,7 @@ async def fetch_filtered_leave_type_info(conn, leave_type_id=None):
 async def fetch_filtered_leave_issuer_info(conn, leave_issuer_id=None):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.leave_issuer"
+        query = "SELECT * FROM dbo.dim_leave_issuer"
         params = []
         conditions = []
 
@@ -60,7 +60,7 @@ async def fetch_filtered_employee_leaves_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.employee_leaves"
+        query = "SELECT * FROM dbo.fact_employee_leaves"
         params = []
         conditions = []
 

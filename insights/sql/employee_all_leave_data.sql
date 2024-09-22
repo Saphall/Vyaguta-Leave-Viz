@@ -35,18 +35,18 @@ SELECT
   TO_CHAR(el.created_at, 'MonDD') AS leave_month_dd,
   TO_CHAR(el.created_at, 'DY') AS leave_day,
   TO_CHAR(el.created_at, 'MM') AS month_number
-FROM dbo.employee_leaves AS el
-INNER JOIN dbo.employees AS e
+FROM dbo.fact_employee_leaves AS el
+INNER JOIN dbo.dim_employees AS e
   ON el.employee_id = e.employee_id
-INNER JOIN dbo.designations AS d
+INNER JOIN dbo.dim_designations AS d
   ON e.designation_id = d.designation_id
-INNER JOIN dbo.leave_types AS lt
+INNER JOIN dbo.dim_leave_types AS lt
   ON el.leave_type_id = lt.leave_type_id
-FULL JOIN dbo.team_managers AS tm
+FULL JOIN dbo.dim_team_managers AS tm
   ON e.team_manager_id = tm.team_manager_id
-INNER JOIN dbo.departments AS d2
+INNER JOIN dbo.dim_departments AS d2
   ON e.department_id = d2.department_id
-INNER JOIN dbo.leave_issuer AS li
+INNER JOIN dbo.dim_leave_issuer AS li
   ON el.leave_issuer_id = li.leave_issuer_id
-INNER JOIN dbo.fiscal_year AS fy
+INNER JOIN dbo.dim_fiscal_year AS fy
   ON el.fiscal_id = fy.fiscal_id;

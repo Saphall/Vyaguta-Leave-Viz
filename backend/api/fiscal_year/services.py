@@ -9,7 +9,7 @@ async def fetch_filtered_fiscal_year_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.fiscal_year"
+        query = "SELECT * FROM dbo.dim_fiscal_year"
         params = []
         conditions = []
 

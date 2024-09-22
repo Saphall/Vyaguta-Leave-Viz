@@ -7,7 +7,7 @@ async def fetch_filtered_designations_info(
 ):
     try:
         cur = conn.cursor()
-        query = "SELECT * FROM dbo.designations"
+        query = "SELECT * FROM dbo.dim_designations"
         params = []
         conditions = []
 
