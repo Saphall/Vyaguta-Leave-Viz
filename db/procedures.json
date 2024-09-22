@@ -1,17 +1,17 @@
 {
-    "steps": [
-      { "proc": "raw.imported_leave_information_archive" },
-      { "proc": "std.extract_leave_info_interim" },
-      { "proc": "dbo.dim_extract_leave_types" },
-      { "proc": "dbo.dim_fiscal_year" },
-      { "proc": "dbo.dim_leave_issuer" },
-      { "proc": "dbo.dim_designations" },
-      { "proc": "dbo.dim_departments" },
-      { "proc": "dbo.dim_team_managers" },
-      { "proc": "dbo.dim_employees" },
-      { "proc": "dbo.dim_employee_leave_issuer" },
-      { "proc": "dbo.fact_employee_leaves" },
-      { "proc": "dbo.dim_allocations" },
-      { "proc": "dbo.dim_employee_allocations" }
-    ]
-  }
+  "extract": [{ "proc": "raw.imported_leave_information_archive" }],
+  "transform": [{ "proc": "std.extract_leave_info_interim" }],
+  "load": [
+    { "proc": "dbo.dim_extract_leave_types" },
+    { "proc": "dbo.dim_fiscal_year" },
+    { "proc": "dbo.dim_leave_issuer" },
+    { "proc": "dbo.dim_designations" },
+    { "proc": "dbo.dim_departments" },
+    { "proc": "dbo.dim_team_managers" },
+    { "proc": "dbo.dim_employees" },
+    { "proc": "dbo.dim_employee_leave_issuer" },
+    { "proc": "dbo.fact_employee_leaves" },
+    { "proc": "dbo.dim_allocations" },
+    { "proc": "dbo.dim_employee_allocations" }
+  ]
+}

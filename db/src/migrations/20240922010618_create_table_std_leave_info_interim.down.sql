@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS raw.leave_information_interim;
+DROP TABLE IF EXISTS std.leave_information_interim;

@@ -78,4 +78,10 @@ python setupdb.py --down
 
 ![image](https://github.com/user-attachments/assets/7a01998f-c730-4333-bbce-273930b8182e)
 
-* **
+## ETL (Extract, Transform, Load)
+
+The ETL is scheduled to run every **5 minutes**: [Scheduler](https://github.com/Saphall/Vyaguta-Leave-Viz/blob/2a17ccab61ea09285a0e611466a802bbdeb1e939/backend/main.py#L43-L52).
+
+The leave data is `extracted` from Vyaguta API, `trasformed` and `loaded` in Postgres Database as defined in [procedures.json](./procedures.json).
+
+![image](https://github.com/user-attachments/assets/a0bc2084-dd5f-4d7e-9a26-3168c812ec95)

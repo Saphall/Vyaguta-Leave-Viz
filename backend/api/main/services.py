@@ -36,12 +36,27 @@ async def insert_leave_info(data, conn):
             cur.execute(query, row)
             conn.commit()
 
+        print("\n[INFO]: Leave Data Imported Successfully! Starting ETL ...")
+
         with open(f"{db.__path__[0]}/procedures.json", encoding="utf-8") as f:
-            proc_steps = json.load(f)
-        for step in proc_steps["steps"]:
+            etl_steps = json.load(f)
+
+        for step in etl_steps["extract"]:
             cur.execute(f'CALL {step["proc"]}();')
             conn.commit()
-        print("[INFO]: Leave Data Inserted Successfully!")
+        print("\n\t[INFO]: Leave Data Extracted Successfully!")
+
+        for step in etl_steps["transform"]:
+            cur.execute(f'CALL {step["proc"]}();')
+            conn.commit()
+        print("\t[INFO]: Leave Data Transformed Successfully!")
+
+        for step in etl_steps["load"]:
+            cur.execute(f'CALL {step["proc"]}();')
+            conn.commit()
+        print("\t[INFO]: Leave Data Loaded Successfully!")
+
+        print("\n[SUCCESS]: ETL process Completed!\n")
         return {"success": "Leave Data Inserted Successfully!", "status_code": 200}
     except Exception as e:
         print(f"Error: {e}")
