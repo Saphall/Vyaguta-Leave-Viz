@@ -26,7 +26,7 @@ async def migration_down():
     )
     table_exists = cur.fetchone()[0]
     if table_exists:
-        cur.execute("DELETE FROM __vyaguta_migrations WHERE batch <> 0;")
+        cur.execute("DELETE FROM __vyaguta_migrations;")
     print("=" * 36)
     print("[-] VyagutaViz Database cleaned!")
     print("=" * 36)
