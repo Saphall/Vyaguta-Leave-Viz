@@ -48,6 +48,8 @@ poetry install
 docker compose up
 ```
 
+![image](https://github.com/user-attachments/assets/96882ff8-281e-4c43-b504-8eacdcbacb41)
+
 ## Test
 
 ```zsh

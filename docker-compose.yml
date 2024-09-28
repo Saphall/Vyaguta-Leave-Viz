@@ -6,22 +6,46 @@ services:
   db:
     container_name: postgresql
     image: "postgres:12.2-alpine"
-    env_file:
-      - .env
+    env_file: .env
     ports:
-      - "5432:5432"
+      - "6543:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data/
 
   backend:
-    build: ./backend
+    build:
+      context: .
+    container_name: vyaguta-backend
+    command:
+      [
+        "poetry",
+        "run",
+        "uvicorn",
+        "backend.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+      ]
+    env_file: .env
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
+      - db
 
   frontend:
-    build: ./insights
+    build:
+      context: .
+    container_name: vyaguta-frontend
+    command:
+      [
+        "streamlit",
+        "run",
+        "insights/dashboard.py",
+        "--server.port=8501",
+        "--server.address=0.0.0.0",
+      ]
+    env_file: .env
     ports:
       - "8501:8501"
     depends_on:
