@@ -28,3 +28,14 @@ variable "db_password" {
   type        = string
   sensitive   = true # Marks this as a sensitive value to hide it in logs
 }
+
+variable "vyaguta_user_name" {
+    description = "The name of the PostgreSQL user"
+    type        = string
+    default     = "vyaguta_user"
+  }
+
+variable "vyaguta_user_password" {
+    description = "The password for the PostgreSQL user"
+    type        = string
+  }

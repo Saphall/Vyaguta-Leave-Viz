@@ -1,0 +1,8 @@
+# Replace the actual credentials here
+db_user = "postgres"
+db_password = "postgres"
+db_port = "6543"
+
+# Vyaguta User Creation
+vyaguta_user_name = "vyaguta_user"
+vyaguta_user_password = "vyaguta_password"
