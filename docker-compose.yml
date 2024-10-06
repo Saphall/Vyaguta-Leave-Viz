@@ -41,7 +41,7 @@ services:
       [
         "streamlit",
         "run",
-        "insights/dashboard.py",
+        "insights/app.py",
         "--server.port=8501",
         "--server.address=0.0.0.0",
       ]
