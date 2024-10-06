@@ -47,5 +47,5 @@ poetry install
 ## Run locally
 
 ```zsh
-streamlit run insights/dashboard.py
+streamlit run insights/app.py
 ```

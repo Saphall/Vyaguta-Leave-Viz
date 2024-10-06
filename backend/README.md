@@ -60,21 +60,23 @@ uvicorn backend.main:app --reload
 
 * `[GET] /api/employees`: Fetch all the employee information from Postgres DB
 
-* `[GET] /api/allocations`: "Fetch all the employee allocations data from Postgres DB"
+* `[GET] /api/allocations`: Fetch all the employee allocations data from Postgres DB
 
-* `[GET] /api/departments`: "Fetch all the departments data from Postgres DB"
+* `[GET] /api/departments`: Fetch all the departments data from Postgres DB
 
-* `[GET] /api/designations`: "Fetch all the designations data from Postgres DB"
+* `[GET] /api/designations`: Fetch all the designations data from Postgres DB
 
-* `[GET] /api/fiscal_year`: "Fetch all the fical_year data from Postgres DB"
+* `[GET] /api/fiscal_year`: Fetch all the fical_year data from Postgres DB
 
-* `[GET] /api/leave_types`: "Fetch all the leave_types data from Postgres DB"
+* `[GET] /api/leave_types`: Fetch all the leave_types data from Postgres DB
 
-* `[GET] /api/leave_issuer`: "Fetch all the leave_issuer data from Postgres DB"
+* `[GET] /api/leave_issuer`: Fetch all the leave_issuer data from Postgres DB
 
-* `[GET] /api/employee_leaves`: "Fetch all the employee_leaves data from Postgres DB"
+* `[GET] /api/employee_leaves`: Fetch all the employee_leaves data from Postgres DB
 
-* `[GET] /api/leaves`: Fetch all the leave information from Postgres DB
+* `[GET] /api/raw_leaves`: Fetch all the raw leave information from Postgres DB
+
+* `[GET] /api/employee_leave_insights`: Fetch all the employee leave insights data from Postgres DB
 
 ## Example API Call
 
@@ -86,7 +88,7 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-Request URL: 
+Request URL:
 
 ```bash
 http://127.0.0.1:8000/api/designations?designation_id=4

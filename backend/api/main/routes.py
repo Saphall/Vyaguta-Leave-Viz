@@ -24,7 +24,8 @@ async def index():
             "[GET] /api/leave_types": "Fetch all the leave_types data from Postgres DB",
             "[GET] /api/leave_issuer": "Fetch all the leave_issuer data from Postgres DB",
             "[GET] /api/employee_leaves": "Fetch all the employee_leaves data from Postgres DB",
-            "[GET] /api/leaves": "Fetch all the leave data from Postgres DB",
+            "[GET] /api/raw_leaves": "Fetch all the raw leave data from Postgres DB",
+            "[GET] /api/employee_leaves_insight": "Fetch all the employee leaves insight data from Postgres DB",
         },
     }
 

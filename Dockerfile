@@ -32,4 +32,4 @@ EXPOSE 8000 8501
 CMD ["poetry", "run", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # Frontend command
-CMD ["streamlit", "run", "insights/dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "insights/app.py", "--server.port=8501", "--server.address=0.0.0.0"]

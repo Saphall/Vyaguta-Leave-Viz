@@ -100,38 +100,3 @@ async def fetch_filtered_employee_leaves_info(
     except Exception as e:
         print(f"Error: {e}")
         return {"error": "Invalid Arguments provided in request.", "status_code": 404}
-
-
-async def fetch_filtered_all_leave_info(
-    conn, designation_id=None, start_date=None, end_date=None, size=None
-):
-    try:
-        cur = conn.cursor()
-        query = "SELECT * FROM raw.imported_leave_information"
-        params = []
-        conditions = []
-
-        if designation_id:
-            conditions.append("CAST(designationid AS INT) = %s")
-            params.append(designation_id)
-        if start_date:
-            conditions.append("CAST(startdate AS DATE) >= %s")
-            params.append(start_date)
-        if end_date:
-            conditions.append("CAST(enddate AS DATE) <= %s")
-            params.append(end_date)
-        if conditions:
-            query += " WHERE " + " AND ".join(conditions)
-        if size:
-            query += " LIMIT %s"
-            params.append(size)
-
-        cur.execute(query, params)
-        leave_data_dict = convert_list_to_dict(cur)
-        leave_data_dict.append({"total_count": len(leave_data_dict)})
-
-        return {"data": leave_data_dict, "status_code": 200}
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return {"error": "Invalid Arguments provided in request.", "status_code": 404}

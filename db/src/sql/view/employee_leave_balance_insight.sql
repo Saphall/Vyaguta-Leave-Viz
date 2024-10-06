@@ -1,14 +1,21 @@
+CREATE OR REPLACE VIEW dbo.vw_leave_balance_insight AS
 WITH fiscal_dates AS (
-  SELECT DISTINCT LEFT(CAST(start_date AS VARCHAR), 4) || '/' || LEFT(CAST(end_date AS VARCHAR), 4) AS fiscal_date
+  SELECT DISTINCT
+    LEFT(CAST(start_date AS VARCHAR), 4) || '/' || LEFT(CAST(end_date AS VARCHAR), 4) AS fiscal_date,
+    start_date,
+    end_date
   FROM
     dbo.dim_fiscal_year
 ),
 all_combinations AS (
   SELECT
     e.employee_id,
+    e.first_name || ' ' || e.last_name AS employee_name,
     lt.leave_type,
     lt.default_days,
-    fiscal_dates.fiscal_date
+    fiscal_dates.fiscal_date,
+    fiscal_dates.start_date,
+    fiscal_dates.end_date
   FROM
     dbo.dim_employees AS e
   CROSS JOIN
@@ -39,9 +46,12 @@ leave_data AS (
 )
 SELECT
   ac.employee_id,
+  ac.employee_name,
   ac.leave_type,
   ac.default_days,
   ac.fiscal_date,
+  ac.start_date,
+  ac.end_date,
   COALESCE(ld.total, 0) AS total
 FROM
   all_combinations AS ac
