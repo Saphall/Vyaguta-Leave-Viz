@@ -5,9 +5,9 @@ import plotly.express as px
 
 from collections import defaultdict
 
-from viz.utils.api import get_api_data
-from viz.utils.constants import EMPLOYEE_LEAVES_INSIGHT_URL
-from viz.utils.filters import fiscal_year_filter_values, min_start_date
+from insights.utils.api import get_api_data
+from insights.utils.constants import EMPLOYEE_LEAVES_INSIGHT_URL
+from insights.utils.filters import fiscal_year_filter_values, min_start_date
 
 
 st.caption(":material/tune: Filters")

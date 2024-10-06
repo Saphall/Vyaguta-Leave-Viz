@@ -4,12 +4,12 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from viz.utils.designs import create_card
 from collections import Counter, defaultdict
-from viz.utils.constants import EMPLOYEE_LEAVES_INSIGHT_URL
-from viz.utils.api import leave_types_data, get_api_data
+from insights.utils.designs import create_card
+from insights.utils.api import leave_types_data, get_api_data
+from insights.utils.constants import EMPLOYEE_LEAVES_INSIGHT_URL
 from st_aggrid import AgGrid, GridOptionsBuilder
-from viz.utils.filters import (
+from insights.utils.filters import (
     fiscal_year_filter_values,
     department_filter_values,
     leave_types_filter_values,

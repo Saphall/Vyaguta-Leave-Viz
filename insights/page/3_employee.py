@@ -1,19 +1,20 @@
 import datetime
 import pandas as pd
 import streamlit as st
+import plotly.express as px
+
 from streamlit_lottie import st_lottie
 
-from viz import assets
-import plotly.express as px
-from viz.utils.util import get_gender, profile_pic
-from viz.utils.api import get_api_data, leave_types_data
-from viz.utils.designs import profile_card, create_secondary_card, info_card
+from insights import assets
+from insights.utils.util import get_gender, profile_pic
+from insights.utils.api import get_api_data, leave_types_data
+from insights.utils.designs import profile_card, create_secondary_card, info_card
 from collections import defaultdict
-from viz.utils.constants import (
+from insights.utils.constants import (
     EMPLOYEE_LEAVES_INSIGHT_URL,
     EMPLOYEE_DETAILS_INSIGHT_URL,
 )
-from viz.utils.filters import (
+from insights.utils.filters import (
     employee_names_filter_values,
     leave_types_filter_values,
     fiscal_year_filter_values,

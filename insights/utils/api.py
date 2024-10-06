@@ -1,6 +1,7 @@
 import requests
 import streamlit as st
-from viz.utils.constants import BACKEND_SERVER
+
+from insights.utils.constants import BACKEND_SERVER
 
 
 @st.cache_data

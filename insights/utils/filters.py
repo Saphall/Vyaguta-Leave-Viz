@@ -1,6 +1,6 @@
 import pandas as pd
 
-from viz.utils.api import (
+from insights.utils.api import (
     leave_types_data,
     fiscal_year_data,
     departments_data,
