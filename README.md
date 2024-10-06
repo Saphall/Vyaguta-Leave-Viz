@@ -151,7 +151,7 @@ docker compose up
     ```bash
     docker compose up -d frontend
     or
-    streamlit run insights/dashboard.py
+    streamlit run insights/app.py
     ```
 
 ## Test
