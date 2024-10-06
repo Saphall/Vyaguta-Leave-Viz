@@ -4,6 +4,6 @@ AS $$
   INSERT INTO dbo.dim_departments(department_name)  
   SELECT DISTINCT department_description
   FROM std.leave_information_interim
-  ON CONFLICT (department_id)
+  ON CONFLICT (department_name)
   DO NOTHING;
 $$;

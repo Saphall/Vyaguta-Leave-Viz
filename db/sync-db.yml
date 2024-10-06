@@ -22,6 +22,11 @@ sql:
   - procedure/load/load_dim_leave_types.sql
   - procedure/load/load_dim_team_managers.sql
 
+  # Views
+  - view/employee_details_insight.sql
+  - view/employee_leaves_insight.sql
+  - view/employee_leave_balance_insight.sql
+
 migration:
   directory: migrations
   tableName: __vyaguta_migrations

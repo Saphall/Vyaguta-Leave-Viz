@@ -1,13 +1,22 @@
 # Vyaguta Leave Viz
 
-Visualize the Vyaguta Leave Information for Leapfrog employees over time.
+Vyaguta Leave Viz is a web-based application that allows to manage and visualize employee leave data. It integrates with the Vyaguta API to fetch leave data and provides insights through various visualizations and reports. Users can also upload the leave data and visualize it. The visualization dashboard shows insights about the employees' leave trends.
 
-```.
+* Data Upload and API Consumption
+* Employee Profile Management
+* Comprehensive Leave Data Visualization
+* Real-time Data Updates
+* Customizable Visualization Options
+* Reporting and Insights
+* Fiscal Year Configuration
+
+## Project Structure
+
+```bash
 Vyaguta Leave Viz
-|
+
 ├── .github/                   # CI/CD scripts
 │   └── workflow/
-|
 ├── backend/                   # Contains code for Backend (API)
 │   ├── api/                   # Different API routes and their services
 │   ├── error_handler/
@@ -17,14 +26,12 @@ Vyaguta Leave Viz
 │   ├── README.md
 │   ├── Dockerfile
 │   └── vyaguta_info_example.json
-|
 ├── db/                        # Contains code for Database
 │   ├── sql/
 │   └── utils/
 │   ├── setupdb.py
 │   ├── README.md
 │   ├── procedures.json
-|
 ├── infra/                     # Contains code for Infrastructure setup
 │   ├── main.tf
 │   ├── providers.tf
@@ -32,77 +39,156 @@ Vyaguta Leave Viz
 │   └── variables.tf
 │   ├── terraform.tfvars
 │   ├── README.md
-|
 ├── insights/                  # Contains code for Visualization
+│   └── .streamlit/
+│   └── assets/
+│   └── page/
 │   └── utils/
-│   ├── dashboard.py
-│   ├── Dockerfile
+│   ├── app.py
 │   ├── README.md
-|
 ├── .env.example               # Example environment variables
-|
 ├── .gitignore                 # Git ignore file
-|
 ├── .pylintrc                  # Lint Check for Python files
-|
 ├── .python-version            # Python version file
-|
 ├── .sqlfluff                  # Linter for SQL files
-|
 ├── docker-compose.yml         # Docker Compose file
-|
 ├── LICENSE.md                 # License file
-|
 ├── poetry.lock                # Poetry lock file
-|
 ├── pyproject.toml             # Package Manager
-|
 ├── README.md                  # Project README
-|
-├── SETUP.md                   # Setup instructions
-|
 └── test.sh                    # Bash Script to test the code
 ```
 
-## [Infra](./infra/)
+## Architecture Diagram
+
+![Language Proficiency Architecture Diagram drawio](https://github.com/user-attachments/assets/58b8851f-fd57-4c01-9278-31e40c716ba4)
+
+## Setup
+
+### Prerequisites
+
+1. [GIT](https://git-scm.com/downloads)
+2. [Pyenv](https://github.com/pyenv/pyenv#getting-pyenv)
+
+### Installation
+
+* Setup python
+
+    ```bash
+    pyenv update
+
+    sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+    xz-utils tk-dev libffi-dev liblzma-dev libpq-dev
+
+    pyenv install 3.11
+
+    pyenv local 3.11
+    ```
+
+* Install [Poetry](https://python-poetry.org/docs/)
+
+* Use project environment using poetry
+
+    ```bash
+    poetry env use 3.11
+    ```
+
+* Activate virtual environment
+
+    ```bash
+    poetry shell
+    ```
+
+* Install dependencies
+
+    ```bash
+    python -m pip install -e .
+    poetry install
+    ```
+
+## Services
+
+* ### [Infra](./infra/)
+
+    ```bash
+    terraform init
+    terraform apply
+    ```
+
+* ### [DB](./db/)
+
+    ```bash
+    docker compose up -d postgres
+    ```
+
+    Run Migrartions
+
+    ```bash
+    python db/setupdb.py --up
+    or 
+    yarn sync-db synchronize
+    ```
+
+## Run the system
 
 ```bash
-terraform init
-terraform apply
+docker compose up
 ```
 
-## [Backend](./backend/)
+![image](https://github.com/user-attachments/assets/96882ff8-281e-4c43-b504-8eacdcbacb41)
 
-```zsh
-uvicorn backend.main:app --reload
-```
+* ### [Backend](./backend/)
 
-## [DB](./db/)
+    ```bash
+    docker compose up -d backend
+    or 
+    uvicorn backend.main:app --reload
+    ```
 
-```zsh
-docker compose up -d postgres
-python db/setupdb.py --up
-```
+* ### [Insights](./insights/)
 
-## [Insights](./insights/)
-
-```zsh
-streamlit run insights/dashboard.py
-```
+    ```bash
+    docker compose up -d frontend
+    or
+    streamlit run insights/dashboard.py
+    ```
 
 ## Test
 
-```zsh
+```bash
 chmod +x test.sh
 ./test.sh
 ```
 
 ## Visualizations
 
-![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/acb3b542-c955-4dd9-8e26-f552e31a4bb6)
+  ![image](https://github.com/user-attachments/assets/aeeab170-7de6-49c4-ac68-d474bcf1112d)
 
-![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/9ba03aa1-4c7d-44a2-aa34-12fe7a8500af)
+* ### Overview Page
 
-![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/c37d93ad-4d8e-43c6-85ae-8789747fdb68)
+  ![image](https://github.com/user-attachments/assets/3ac4917e-7dc5-4427-9eaf-083bbb4a8859)
 
-![image](https://github.com/Saphall/Vyaguta-Leave-Viz/assets/66344649/94fa46d0-92da-43bb-9520-3ca0a8e0f34d)
+  ![image](https://github.com/user-attachments/assets/225f1943-fa2d-47da-b47a-f1cf5744dfbd)
+  
+  ![image](https://github.com/user-attachments/assets/9c22f174-7a4d-45aa-86a1-63f1b6b1f663)
+  
+  ![image](https://github.com/user-attachments/assets/5c6cf76d-92a3-43c2-bafc-59cc14a3ad3b)
+  
+  ![image](https://github.com/user-attachments/assets/5ade18a0-4457-46ea-87a8-24f17d06dec3)
+
+* ### Employee Page
+
+  ![image](https://github.com/user-attachments/assets/eda7bdcc-ff53-4541-98d1-e5f5e3e76d72)
+
+  ![image](https://github.com/user-attachments/assets/d066a0e3-35c0-4619-ba15-f76655311c49)
+
+* ### Leave Trends Page
+
+  ![image](https://github.com/user-attachments/assets/d7c90623-471d-43c8-921f-e67c37566289)
+
+  ![image](https://github.com/user-attachments/assets/77e68ebe-41ac-445e-8257-352c2c36328e)
+
+* ### About
+
+  ![image](https://github.com/user-attachments/assets/18f1b829-7fc2-4f69-a30b-b35fd446d96a)

@@ -14,6 +14,7 @@ from backend.api.allocations.routes import allocations_router
 from backend.api.departments.routes import departments_router
 from backend.api.fiscal_year.routes import fiscal_year_router
 from backend.api.designations.routes import designations_router
+from backend.api.insights.routes import employee_insight_router
 
 from backend.api.main.controller import insert_leaves
 from backend.error_handler.errors import rate_limit_handler
@@ -29,6 +30,7 @@ routers = [
     designations_router,
     fiscal_year_router,
     leave_router,
+    employee_insight_router,
 ]
 for router in routers:
     app.include_router(router)
@@ -44,7 +46,7 @@ async def rate_limit_exception_handler(request: Request, exc: RateLimitExceeded)
 async def startup_event():
     scheduler.add_job(
         insert_leaves,
-        IntervalTrigger(seconds=300),
+        IntervalTrigger(seconds=30000),
         args=[os.getenv("BEARER_TOKEN")],
         max_instances=1,
         replace_existing=True,
