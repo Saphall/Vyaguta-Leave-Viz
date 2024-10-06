@@ -42,7 +42,6 @@ async def employee_leave_info(
     end_date: Optional[str] = Query(None, alias="end_date"),
     size: Optional[int] = Query(None, alias="size"),
 ):
-    print("status", status)
     return await fetch_employee_leaves_insight(
         request,
         employee_name,

@@ -61,7 +61,6 @@ async def fetch_filtered_employee_leaves_insight(
     size=None,
 ):
     try:
-        print(status)
         cur = conn.cursor()
         query = "SELECT * FROM dbo.vw_employee_leaves_insight"
         params = []
@@ -96,8 +95,6 @@ async def fetch_filtered_employee_leaves_insight(
         if size:
             query += " LIMIT %s"
             params.append(size)
-
-        print(query, params)
 
         cur.execute(query, params)
         employee_data_dict = convert_list_to_dict(cur)
