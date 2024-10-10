@@ -28,8 +28,8 @@ Vyaguta Leave Viz
 │   └── vyaguta_info_example.json
 ├── db/                        # Contains code for Database
 │   ├── src/
-|   |    ├── migrations/
-|   |    ├── sql/
+│   │   ├── migrations/
+│   │   ├── sql/
 │   └── utils/
 │   ├── setupdb.py
 │   ├── README.md
