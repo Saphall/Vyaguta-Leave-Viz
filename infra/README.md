@@ -1,6 +1,6 @@
 # Infrastructure
 
-Setup the necessary infrastructures.
+Setup the necessary infrastructures for the Leave Vizualization System.
 
 ```text
 ├── main.tf                 # This file references other components and serves as the entry point for running the Terraform configuration.

@@ -27,7 +27,9 @@ Vyaguta Leave Viz
 │   ├── Dockerfile
 │   └── vyaguta_info_example.json
 ├── db/                        # Contains code for Database
-│   ├── sql/
+│   ├── src/
+|       ├── migrations/
+|       ├── sql/
 │   └── utils/
 │   ├── setupdb.py
 │   ├── README.md
@@ -130,14 +132,6 @@ Vyaguta Leave Viz
     yarn sync-db synchronize
     ```
 
-## Run the system
-
-```bash
-docker compose up
-```
-
-![image](https://github.com/user-attachments/assets/96882ff8-281e-4c43-b504-8eacdcbacb41)
-
 * ### [Backend](./backend/)
 
     ```bash
@@ -151,8 +145,16 @@ docker compose up
     ```bash
     docker compose up -d frontend
     or
-    streamlit run insights/app.py
+    streamlit run insights/app.py reload
     ```
+  
+## Run the system
+
+```bash
+docker compose up
+```
+
+![image](https://github.com/user-attachments/assets/96882ff8-281e-4c43-b504-8eacdcbacb41)
 
 ## Test
 

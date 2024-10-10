@@ -1,47 +1,29 @@
 # Backend
 
-<img src = 'https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png' width=50%>
+<img src = 'https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png' width=30%>
 
-## Prerequisites
+Backend Setup for the Leave Vizualization system.
 
-1. [GIT](https://git-scm.com/downloads)
-2. [Pyenv](https://github.com/pyenv/pyenv#getting-pyenv)
-
-## Installation
-
-* Setup python
-
-```zsh
-
-pyenv update
-
-sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev
-
-pyenv install 3.11
-
-pyenv local 3.11
-```
-
-* Install [Poetry](https://python-poetry.org/docs/)
-
-* Use project environment using poetry
-
-```zsh
-poetry env use 3.11
-```
-
-* Activate virtual environment
-
-```zsh
-poetry shell
-```
-
-* Install dependencies
-
-```zsh
-poetry install
+```bash
+backend/
+├── api/                            # Different API routes and their services
+│   ├── allocations/                # API code for the allocation details
+│   ├── departments/                # API code for the department details
+│   └── designations/               # API code for the designation details
+│   └── employees/                  # API code for the employee details
+│   └── fiscal_year/                # API code for the fiscal_year details
+│   └── insights/                   # API code for the insights
+│   └── leaves/                     # API code for the leave details
+│   └── main/                       # API code for the vyaguta API fetch/insert and cron job
+├── error_handler/                  # Code to handle different errors
+│   └──  errors.py
+├── tests/                          # Unit and Functional test
+│   ├── functional/
+│   └── unit
+├── utils/                          # Utility codes
+├── main.py                         # Main file for backend
+├── README.md
+└── vyaguta_info_example.json       # Example leave data
 ```
 
 ## Run locally
@@ -50,9 +32,15 @@ poetry install
 uvicorn backend.main:app --reload
 ```
 
+## Using Docker
+
+```bash
+docker compose up -d backend
+```
+
 ## API Endpoints
 
-![image](https://github.com/user-attachments/assets/ea4e997f-19e2-4cfc-9b38-975645704893)
+![image](https://github.com/user-attachments/assets/c816f8c6-a268-449f-831e-50025f94cb03)
 
 * `[GET] /vyaguta/api/leaves`: Fetch all the leave data from Vyaguta API
 
@@ -74,9 +62,11 @@ uvicorn backend.main:app --reload
 
 * `[GET] /api/employee_leaves`: Fetch all the employee_leaves data from Postgres DB
 
-* `[GET] /api/raw_leaves`: Fetch all the raw leave information from Postgres DB
+* `[GET] /api/employee_details_insight`: Fetch all the employee details information from Postgres DB
 
-* `[GET] /api/employee_leave_insights`: Fetch all the employee leave insights data from Postgres DB
+* `[GET] /api/employee_leaves_insight`: Fetch all the employee leave insights data from Postgres DB
+
+* `[GET] /api/employee_leave_balance_insight`: Fetch all the employee leave balance from Postgres D
 
 ## Example API Call
 

@@ -2,6 +2,28 @@
 
 ![Postgresql](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRFK4UmCV-4Y2Z8CEw8Pzkq3UV2y0uFJA7IA&s)
 
+Database Setup for the Leave Vizualization system.
+
+```bash
+db/
+├── src/                         # Contains code for the Database
+│   ├── migrations/              # Migration codes for the Postgres DB
+│   ├── sql/
+│   │   ├── procedure/           # Different procedures for the ETL jobs
+│   │   │   └── extract          # Scripts to extract the leave data
+│   │   │   ├── transform        # Scripts to transform the leave data
+│   │   │   ├── load             # Script to load and normalize the leave data
+│   │   └── view/                # Different views for the insights
+│   │
+└── utils/                       # Utility codes
+├── sync-db.yml                  # YAML file to sync-db 
+├── connection-resolver.js       # Connection resolver to use sync-db in DB
+├── package.json                 # required packages to use sync-db
+├── procedures.json              # list of procedures for the ETL jobs
+├── README.md
+├── setupdb.py                   # script to create and drop the DBs instantly
+```
+
 ## Prerequisites
 
 1. [Docker](https://docs.docker.com/)
